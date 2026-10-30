@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arka Patra · Physics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f8;--surface:#fff;--ink:#14213d;--muted:#55627f;--line:#d5dcea;--accent:#2b59c3;--spin:#e4572e;--hero:#14213d;--hero-ink:#f2f5fb;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--surface:#161e33;--ink:#e8edf8;--muted:#9aa7c4;--line:#27314d;--accent:#7fa2ff;--spin:#ff8a5c;--hero:#0a0f1d;--hero-ink:#eef2fb}}
+:root[data-theme="dark"]{--bg:#0e1424;--surface:#161e33;--ink:#e8edf8;--muted:#9aa7c4;--line:#27314d;--accent:#7fa2ff;--spin:#ff8a5c;--hero:#0a0f1d;--hero-ink:#eef2fb}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Instrument Sans","Noto Sans Bengali",system-ui,sans-serif}
+h1,h2,h3{font-family:"Newsreader","Noto Serif Bengali",Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+:lang(bn) h1,:lang(bn) h2,:lang(bn) h3{line-height:1.35}
+:lang(bn) .hero p.t{font-style:normal}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hero);z-index:21}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero);color:var(--hero-ink);display:flex;gap:6px;align-items:center;padding:12px 5vw}
+nav b{font-family:"Newsreader","Noto Serif Bengali",serif;font-size:1.2rem;margin-right:auto;white-space:nowrap;flex-shrink:0;padding-right:10px}
+.nl{display:flex;gap:6px;align-items:center;overflow-x:auto;min-width:0}
+nav a{color:var(--hero-ink);opacity:.8;padding:6px 12px;border-radius:99px;font-size:.95rem;white-space:nowrap}
+nav a:hover{opacity:1;background:#ffffff1f;text-decoration:none}
+.lang{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:.92rem;font-weight:600;color:var(--hero-ink);background:transparent;border:1.5px solid #ffffff59;border-radius:99px;padding:5px 14px;margin-left:8px;cursor:pointer;white-space:nowrap}
+.lang:hover{background:#ffffff1f}
+.lang svg{width:16px;height:16px;flex-shrink:0}
+.hero{position:relative;background:var(--hero);color:var(--hero-ink);min-height:78vh;display:flex;align-items:center;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;padding:8vh 5vw;max-width:1100px;pointer-events:none}
+.hero .in a{pointer-events:auto}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);letter-spacing:-.02em}
+.hero p.t{font-family:"Newsreader","Noto Serif Bengali",serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.7rem);margin:14px 0 6px;opacity:.9}
+.hero p.s{max-width:36rem;opacity:.75;margin:0 0 26px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 20px;border-radius:99px;font-weight:600;font-size:.95rem;border:1.5px solid #ffffff66;color:var(--hero-ink)}
+.btn.p{background:var(--spin);border-color:var(--spin);color:#1a0d08}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.tabs{max-width:1040px;margin:0 auto;padding:56px 5vw 8px}
+.tablist{display:flex;gap:4px;position:relative;border-bottom:1px solid var(--line);margin-bottom:26px;overflow-x:auto;scrollbar-width:none}
+.tablist::-webkit-scrollbar{display:none}
+.tab{font:inherit;font-family:"Newsreader","Noto Serif Bengali",Georgia,serif;font-weight:600;font-size:clamp(1.15rem,2.6vw,1.5rem);background:none;border:0;color:var(--muted);padding:12px 18px;cursor:pointer;white-space:nowrap;border-radius:10px 10px 0 0;transition:color .25s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink)}
+.ind{position:absolute;left:0;bottom:0;height:3px;background:var(--spin);border-radius:3px;transition:transform .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
+.vp{overflow:hidden;touch-action:pan-y;transition:height .5s cubic-bezier(.2,.8,.2,1)}
+.track{display:flex;align-items:flex-start;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.pane{flex:0 0 100%;min-width:0;padding:4px 4px 20px}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.links a{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 18px;font-weight:600}
+.links a:hover{text-decoration:none;border-color:var(--accent)}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
+.pg{font:inherit;font-size:.95rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:8px 18px;cursor:pointer}
+.pg:hover{border-color:var(--accent);color:var(--accent)}
+.pg:disabled{visibility:hidden}
+@media (prefers-reduced-motion:reduce){.track,.vp,.ind{transition:none}}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px}
+.about p{margin:0 0 16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tags span{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:5px 14px;font-size:.9rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.panel h3{font-size:1.25rem;margin-bottom:10px}
+.panel p{margin:0 0 10px;color:var(--muted);font-size:.97rem}
+.tl{border-left:2px solid var(--line);margin-left:6px}
+.tl article{position:relative;padding:0 0 28px 28px}
+.tl article::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.tl h3{font-size:1.3rem}.tl time{color:var(--spin);font-weight:600;font-size:.92rem}
+.tl p{margin:2px 0 0;color:var(--muted)}
+.pub{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.pub .y{font-family:"Newsreader","Noto Serif Bengali",serif;font-size:1.5rem;color:var(--accent)}
+.pub h3{font-size:1.15rem;font-weight:600;margin-bottom:4px}
+.pub p{margin:0;color:var(--muted);font-size:.95rem}
+footer{max-width:1040px;margin:64px auto 0;padding:24px 5vw 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.pub{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><b data-i18n="brand">Arka Patra</b>
+<div class="nl"><a href="#about" data-i18n="nav_about">About</a><a href="#education" data-i18n="nav_edu">Education</a><a href="#publications" data-i18n="nav_pub">Publications</a><a href="#contact" data-i18n="nav_contact">Contact</a></div>
+<button class="lang" id="langBtn" type="button" aria-label="Switch language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span id="langTxt">বাংলা</span></button>
+</nav>
+
+<header class="hero">
+<canvas id="lat" aria-hidden="true"></canvas>
+<div class="in">
+<h1 data-i18n="name">Arka Patra</h1>
+<p class="t" data-i18n="role">Physics researcher</p>
+<p class="s" data-i18n="sub">M.Sc. in Physics</p>
+<div class="btns" role="group" aria-label="Sections"><a class="btn p" href="#about" aria-current="true" data-i18n="nav_about">About</a><a class="btn" href="#education" data-i18n="nav_edu">Education</a><a class="btn" href="#publications" data-i18n="nav_pub">Publications</a><a class="btn" href="#contact" data-i18n="nav_contact">Contact</a></div>
+</div>
+</header>
+
+<main class="tabs" id="tabs">
+<div class="tablist" role="tablist" aria-label="Sections">
+<button class="tab" role="tab" id="tab-about" aria-controls="pane-about" data-i18n="nav_about">About</button>
+<button class="tab" role="tab" id="tab-education" aria-controls="pane-education" data-i18n="nav_edu">Education</button>
+<button class="tab" role="tab" id="tab-publications" aria-controls="pane-publications" data-i18n="nav_pub">Publications</button>
+<button class="tab" role="tab" id="tab-contact" aria-controls="pane-contact" data-i18n="nav_contact">Contact</button>
+<span class="ind" aria-hidden="true"></span>
+</div>
+<div class="vp" id="vp"><div class="track" id="track">
+
+<section class="pane" id="pane-about" role="tabpanel" aria-labelledby="tab-about">
+<div class="grid about">
+<div><p data-i18n="about">I am a Senior Research Fellow at the Saha Institute of Nuclear Physics, working on magnetism and Heusler alloys.</p>
+<div class="tags"><span data-i18n="tag1">Magnetism</span><span data-i18n="tag2">Heusler alloy</span></div></div>
+<aside class="panel"><h3 data-i18n="pos_h">Current position</h3><p data-i18n="pos_p">Senior Research Fellow, Saha Institute of Nuclear Physics (Homi Bhabha National Institute)</p></aside>
+</div>
+</section>
+
+<section class="pane" id="pane-education" role="tabpanel" aria-labelledby="tab-education">
+<div class="tl">
+<article><time data-i18n="y_msc">2020</time><h3 data-i18n="msc">M.Sc. in Physics</h3><p data-i18n="msc_i">The University of Burdwan</p></article>
+<article><time data-i18n="y_bsc">2018</time><h3 data-i18n="bsc">B.Sc. in Physics</h3><p data-i18n="bsc_i">Katwa College, The University of Burdwan</p></article>
+</div>
+</section>
+
+<section class="pane" id="pane-publications" role="tabpanel" aria-labelledby="tab-publications">
+<div class="pub"><div class="y" data-i18n="y_pub">2026</div><div><h3>Origin of low magnetic moment in quaternary Heusler alloy NiFeTiGa</h3><p>Journal of Physics: Condensed Matter · <a href="https://doi.org/10.1088/1361-648X/ae60bb">DOI: 10.1088/1361-648X/ae60bb</a></p></div></div>
+</section>
+
+<section class="pane" id="pane-contact" role="tabpanel" aria-labelledby="tab-contact">
+<p><span data-i18n="addr">Saha Institute of Nuclear Physics, Kolkata, India</span><br><a href="mailto:arka.patra@saha.ac.in">arka.patra@saha.ac.in</a><br><a href="mailto:arka.katwa.work@gmail.com">arka.katwa.work@gmail.com</a></p>
+<div class="links"><a href="https://scholar.google.com/citations?user=rs-Hkc4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><a href="https://orcid.org/0009-0006-4604-0798" target="_blank" rel="noopener">ORCID</a></div>
+</section>
+
+</div></div>
+<div class="pager"><button class="pg" id="prev" type="button"></button><button class="pg" id="next" type="button"></button></div>
+</main>
+
+<footer data-i18n="foot">© 2026 Arka Patra</footer>
+
+<script>
+/* ---------- Language switch (English / বাংলা) ---------- */
+const I18N={bn:{
+brand:"অর্ক পাত্র",nav_about:"পরিচিতি",nav_edu:"শিক্ষা",nav_pub:"প্রকাশনা",nav_contact:"যোগাযোগ",
+name:"অর্ক পাত্র",role:"পদার্থবিদ্যা গবেষক",sub:"পদার্থবিদ্যায় এম.এস-সি.",
+about:"আমি সাহা ইনস্টিটিউট অফ নিউক্লিয়ার ফিজিক্সের একজন সিনিয়র রিসার্চ ফেলো। চুম্বকত্ব ও হিউসলার সংকর নিয়ে গবেষণা করছি।",
+tag1:"চুম্বকত্ব",tag2:"হিউসলার সংকর",pos_h:"বর্তমান পদ",pos_p:"সিনিয়র রিসার্চ ফেলো, সাহা ইনস্টিটিউট অফ নিউক্লিয়ার ফিজিক্স (হোমি ভাভা ন্যাশনাল ইনস্টিটিউট)",
+y_msc:"২০২০",msc:"পদার্থবিদ্যায় এম.এস-সি.",msc_i:"বর্ধমান বিশ্ববিদ্যালয়",
+y_bsc:"২০১৮",bsc:"পদার্থবিদ্যায় বি.এস-সি.",bsc_i:"কাটোয়া কলেজ, বর্ধমান বিশ্ববিদ্যালয়",
+y_pub:"২০২৬",addr:"সাহা ইনস্টিটিউট অফ নিউক্লিয়ার ফিজিক্স, কলকাতা, ভারত",foot:"© ২০২৬ অর্ক পাত্র"}};
+const els=[...document.querySelectorAll("[data-i18n]")];
+els.forEach(e=>e.dataset.en=e.textContent);
+const btn=document.getElementById("langBtn"),btxt=document.getElementById("langTxt");
+function setLang(l){
+  document.documentElement.lang=l;
+  els.forEach(e=>{e.textContent=l==="bn"?I18N.bn[e.dataset.i18n]:e.dataset.en});
+  btxt.textContent=l==="bn"?"English":"বাংলা";
+  btn.setAttribute("aria-label",l==="bn"?"Switch to English":"বাংলায় দেখুন");
+  document.title=l==="bn"?"অর্ক পাত্র · পদার্থবিদ্যা":"Arka Patra · Physics";
+  labels();
+  try{localStorage.setItem("lang",l)}catch(e){}
+}
+btn.addEventListener("click",()=>setLang(document.documentElement.lang==="bn"?"en":"bn"));
+
+
+/* ---------- Side-by-side sliding tabs ---------- */
+const ids=["about","education","publications","contact"],
+tabEls=[...document.querySelectorAll(".tab")],paneEls=[...document.querySelectorAll(".pane")],
+track=document.getElementById("track"),vp=document.getElementById("vp"),ind=document.querySelector(".ind"),
+prev=document.getElementById("prev"),next=document.getElementById("next");
+const heroBtns=[...document.querySelectorAll(".hero .btns a")];
+let cur=0;
+function labels(){
+  prev.textContent=cur>0?"← "+tabEls[cur-1].textContent:"";
+  next.textContent=cur<ids.length-1?tabEls[cur+1].textContent+" →":"";
+  prev.disabled=cur===0;next.disabled=cur===ids.length-1;
+}
+function fit(){
+  vp.style.height=paneEls[cur].offsetHeight+"px";
+  const t=tabEls[cur];ind.style.width=t.offsetWidth+"px";ind.style.transform="translateX("+t.offsetLeft+"px)";
+}
+function go(i,scroll){
+  cur=Math.max(0,Math.min(ids.length-1,i));
+  track.style.transform="translateX("+(-cur*100)+"%)";
+  tabEls.forEach((t,j)=>{t.setAttribute("aria-selected",j===cur);t.tabIndex=j===cur?0:-1});
+  paneEls.forEach((p,j)=>{p.inert=j!==cur});
+  heroBtns.forEach((b,j)=>{b.classList.toggle("p",j===cur);if(j===cur)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current")});
+  fit();labels();
+  try{history.replaceState(null,"","#"+ids[cur])}catch(e){}
+  if(scroll)document.getElementById("tabs").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+}
+tabEls.forEach((t,i)=>{
+  t.addEventListener("click",()=>go(i,false));
+  t.addEventListener("keydown",e=>{
+    let n=null;
+    if(e.key==="ArrowRight")n=cur+1;else if(e.key==="ArrowLeft")n=cur-1;else if(e.key==="Home")n=0;else if(e.key==="End")n=ids.length-1;
+    if(n!==null){e.preventDefault();go(n,false);tabEls[cur].focus()}
+  });
+});
+prev.addEventListener("click",()=>go(cur-1,false));
+next.addEventListener("click",()=>go(cur+1,false));
+/* nav links and hero buttons open the matching tab */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  const i=ids.indexOf(a.getAttribute("href").slice(1));
+  if(i>-1)a.addEventListener("click",e=>{e.preventDefault();go(i,true)});
+});
+addEventListener("hashchange",()=>{const i=ids.indexOf(location.hash.slice(1));if(i>-1&&i!==cur)go(i,true)});
+/* swipe on touch screens */
+let sx=0,sy=0;
+vp.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"){sx=e.clientX;sy=e.clientY}});
+vp.addEventListener("pointerup",e=>{if(e.pointerType==="mouse")return;const dx=e.clientX-sx,dy=e.clientY-sy;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1),false)});
+/* keep the height right when text, fonts or screen size change */
+const ro=new ResizeObserver(fit);paneEls.forEach(p=>ro.observe(p));
+addEventListener("resize",fit);
+const start=ids.indexOf(location.hash.slice(1));
+go(start>-1?start:0,false);
+try{if(localStorage.getItem("lang")==="bn")setLang("bn")}catch(e){}
+
+/* ---------- Kagome spin lattice (spins in the orange zone follow the pointer; outside spins wander randomly) ---------- */
+const c=document.getElementById("lat"),x=c.getContext("2d"),still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W,H,pts=[],m={x:-999,y:-999},t=0;
+const TAU=Math.PI*2,EA=still?1:.035,EK=still?1:.05;   // lower = slower, lazier spins
+const wrap=(a,b)=>{let d=(b-a)%TAU;if(d>Math.PI)d-=TAU;if(d<-Math.PI)d+=TAU;return d};
+function build(){const r=c.getBoundingClientRect(),d=devicePixelRatio||1;W=r.width;H=r.height;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);pts=[];const a=Math.max(48,W/22),h=a*Math.sqrt(3);
+for(let j=-1;j*h<H+h;j++)for(let i=-1;i*a*2<W+a*2;i++){const ox=i*a*2+(j%2?a:0),oy=j*h;[[0,0],[a/2,h/2],[a,0]].forEach(o=>{const ph=Math.random()*TAU;pts.push({x:ox+o[0],y:oy+o[1],ph,a:ph,k:0,n:0})})}}
+function draw(){x.clearRect(0,0,W,H);const s=getComputedStyle(document.documentElement).getPropertyValue("--spin").trim();t+=.004;
+pts.forEach(p=>{const dx=m.x-p.x,dy=m.y-p.y,d=Math.hypot(dx,dy);
+const on=m.x>-900?1:0;
+p.n+=(Math.max(0,1-d/260)*on-p.n)*EK;const n=p.n;  // only nearby spins glow and grow (orange zone: n > .05)
+const inZone=n>.05?1:0;
+p.k+=(inZone-p.k)*EK;const k=p.k;                   // only spins in the orange zone aim at the pointer
+if(!still&&!inZone)p.ph+=(Math.random()-.5)*.08;    // random thermal walk when outside the orange zone
+const base=still?p.ph:p.ph+Math.sin(t+p.ph)*.35;
+const toward=base+wrap(base,Math.atan2(dy,dx))*k+(still?0:Math.sin(t*2.2+p.ph)*.2*k);
+p.a+=wrap(p.a,toward)*EA;const ang=p.a;
+const L=9+n*9;x.strokeStyle=n>.05?s:"rgba(160,180,230,.45)";x.fillStyle=x.strokeStyle;x.lineWidth=1.6;
+const ex=p.x+Math.cos(ang)*L,ey=p.y+Math.sin(ang)*L,bx=p.x-Math.cos(ang)*L,by=p.y-Math.sin(ang)*L;
+x.beginPath();x.moveTo(bx,by);x.lineTo(ex,ey);x.stroke();
+x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-Math.cos(ang-.5)*6,ey-Math.sin(ang-.5)*6);x.lineTo(ex-Math.cos(ang+.5)*6,ey-Math.sin(ang+.5)*6);x.fill()});
+if(!still)requestAnimationFrame(draw)}
+build();draw();addEventListener("resize",()=>{build();if(still)draw()});
+const hero=c.parentElement;
+hero.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top;if(still)draw()});
+hero.addEventListener("pointerleave",()=>{m.x=m.y=-999;if(still)draw()});
+</script>
+</body>
+</html>
